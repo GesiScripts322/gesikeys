@@ -5,324 +5,336 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sua Chave • GesiKeys</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, 'Segoe UI', sans-serif;
-    background: #0a0a0a;
-    color: #e6e6e6;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .card {
-    background: #0a0a0a;
-    border: 1px solid #282828;
-    border-radius: 12px;
-    padding: 36px 28px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-  }
-  h1 {
-    font-size: 20px;
-    margin-bottom: 6px;
-    color: #e6e6e6;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-  .sub {
-    font-size: 12px;
-    color: #787878;
-    margin-bottom: 28px;
-  }
-  .step { display: none; }
-  .step.active { display: block; animation: fade 0.3s ease; }
-  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 13px;
-    font-weight: 500;
-    border: 1px solid #282828;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-    background: #181818;
-    color: #e6e6e6;
-    letter-spacing: 0.3px;
-  }
-  button:hover:not(:disabled) { background: #282828; border-color: #505050; }
-  button:active:not(:disabled) { transform: scale(0.98); }
-  button:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-outline {
-    background: transparent;
-    color: #787878;
-    border: 1px solid #282828;
-    margin-top: 10px;
-  }
-  .btn-outline:hover:not(:disabled) { background: #151515; color: #b0b0b0; }
-  .icon { font-size: 40px; margin-bottom: 20px; display: block; opacity: 0.7; }
-  .info {
-    font-size: 12px;
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 22px;
-  }
-  .keyBox {
-    background: #080808;
-    border: 1px solid #282828;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 14px;
-    word-break: break-all;
-  }
-  .keyBox .label {
-    font-size: 10px;
-    color: #787878;
-    margin-bottom: 10px;
-    letter-spacing: 1.5px;
-  }
-  .keyBox .key {
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    font-weight: 600;
-    color: #e6e6e6;
-    letter-spacing: 1.5px;
-  }
-  .keyBox .expiry {
-    font-size: 10px;
-    color: #787878;
-    margin-top: 10px;
-  }
-  .footer {
-    font-size: 10px;
-    color: #505050;
-    margin-top: 26px;
-    letter-spacing: 0.5px;
-  }
-  .badge-step {
-    display: inline-block;
-    background: transparent;
-    color: #787878;
-    padding: 4px 12px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: 500;
-    margin-bottom: 14px;
-    border: 1px solid #282828;
-    letter-spacing: 0.5px;
-  }
-  .countdown {
-    background: #080808;
-    border: 1px solid #282828;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 14px;
-    font-size: 20px;
-    color: #e6e6e6;
-    font-weight: 600;
-    letter-spacing: 3px;
-    font-family: 'Courier New', monospace;
-  }
-  .countdown .label {
-    display: block;
-    font-size: 9px;
-    color: #787878;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-family: -apple-system, sans-serif;
-  }
-  .countdown.warning { border-color: #505050; color: #b0b0b0; }
-  .countdown.expired { border-color: #404040; color: #606060; }
-  .expired-message {
-    display: none;
-    color: #a0a0a0;
-    font-size: 12px;
-    margin-bottom: 14px;
-    font-weight: 500;
-  }
-  .expired-message.active { display: block; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+  color: #e6e6e6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.card {
+  background: #0a0a0a;
+  border: 1px solid #282828;
+  border-radius: 12px;
+  padding: 36px 28px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+h1 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #e6e6e6;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.sub {
+  font-size: 12px;
+  color: #787878;
+  margin-bottom: 28px;
+}
+.step { display: none; }
+.step.active { display: block; }
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  background: #181818;
+  color: #e6e6e6;
+  letter-spacing: 0.3px;
+}
+button:hover:not(:disabled) {
+  background: #282828;
+  border-color: #505050;
+}
+button:active:not(:disabled) { transform: scale(0.98); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-outline {
+  background: transparent;
+  color: #787878;
+  border: 1px solid #282828;
+  margin-top: 10px;
+}
+.btn-outline:hover:not(:disabled) {
+  background: #151515;
+  color: #b0b0b0;
+}
+.icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0.7;
+}
+.info {
+  font-size: 12px;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.keyBox {
+  background: #080808;
+  border: 1px solid #282828;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 14px;
+  word-break: break-all;
+}
+.keyBox .label {
+  font-size: 10px;
+  color: #787878;
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+.keyBox .key {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e6e6e6;
+  letter-spacing: 1.5px;
+}
+.keyBox .expiry {
+  font-size: 10px;
+  color: #787878;
+  margin-top: 10px;
+}
+.footer {
+  font-size: 10px;
+  color: #505050;
+  margin-top: 26px;
+  letter-spacing: 0.5px;
+}
+.badge-step {
+  display: inline-block;
+  background: transparent;
+  color: #787878;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  border: 1px solid #282828;
+  letter-spacing: 0.5px;
+}
+.countdown {
+  background: #080808;
+  border: 1px solid #282828;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+  font-size: 20px;
+  color: #e6e6e6;
+  font-weight: 600;
+  letter-spacing: 3px;
+  font-family: 'Courier New', monospace;
+}
+.countdown .label {
+  display: block;
+  font-size: 9px;
+  color: #787878;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-family: -apple-system, sans-serif;
+}
+.countdown.warning { border-color: #505050; color: #b0b0b0; }
+.countdown.expired { border-color: #404040; color: #606060; }
+.expired-message {
+  display: none;
+  color: #a0a0a0;
+  font-size: 12px;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.expired-message.active { display: block; }
 </style>
 </head>
 <body>
-  <div class="card">
-    <!-- ETAPA GERANDO -->
-    <div class="step active" id="stepLoading">
-      <span class="icon">⏳</span>
-      <h1>Gerando sua chave</h1>
-      <p class="info">Aguarde um instante...</p>
-      <button disabled>GERANDO CHAVE...</button>
-    </div>
-
-    <!-- ETAPA CHAVE -->
-    <div class="step" id="stepKey">
-      <span class="badge-step" id="statusBadge">CHAVE GERADA</span>
-      <h1>Sua Chave</h1>
-      <p class="sub">Copie e cole no painel do Roblox</p>
-
-      <div class="countdown" id="countdownBox">
-        <span class="label">EXPIRA EM</span>
-        <span id="countdownTimer">10:00</span>
-      </div>
-
-      <p class="expired-message" id="expiredMessage">
-        ⚠️ Esta chave expirou. Gere uma nova.
-      </p>
-
-      <div class="keyBox">
-        <div class="label">CHAVE ÚNICA</div>
-        <div class="key" id="keyText">—</div>
-        <div class="expiry" id="expiryText"></div>
-      </div>
-
-      <button id="btnCopiar">COPIAR CHAVE</button>
-      <button class="btn-outline" onclick="resetar()">GERAR OUTRA</button>
-    </div>
-
-    <div class="footer">GESISCRIPTS • SISTEMA OFICIAL</div>
+<div class="card">
+  <div class="step active" id="stepLoading">
+    <span class="icon">⏳</span>
+    <h1>Gerando sua chave</h1>
+    <p class="info">Aguarde um instante...</p>
+    <button disabled>GERANDO CHAVE...</button>
   </div>
 
-  <script>
-    // ⚙️ CONFIGURAÇÕES
-    const API_URL = "https://script.google.com/macros/s/AKfycbyBtqiMfKSEXW92Rdx6D0OPYVtIrPspuT51rQ00Xbq9kyJUSjVotxqQ3XxENrLasSkgWQ/exec";
-    const PREFIXO = "GESI";
-    const EXPIRA_MINUTOS = 10;
+  <div class="step" id="stepKey">
+    <span class="badge-step" id="statusBadge">CHAVE GERADA</span>
+    <h1>Sua Chave</h1>
+    <p class="sub">Copie e cole no painel do Roblox</p>
 
-    let chaveAtual = null;
-    let countdownInterval = null;
-    let tempoExpira = 0;
+    <div class="countdown" id="countdownBox">
+      <span class="label">EXPIRA EM</span>
+      <span id="countdownTimer">10:00</span>
+    </div>
 
-    function getHWID() {
-      const data = [navigator.userAgent, navigator.language, screen.width, screen.height].join("|");
-      let hash = 0;
-      for (let i = 0; i < data.length; i++) {
-        hash = ((hash << 5) - hash) + data.charCodeAt(i);
-        hash |= 0;
-      }
-      return "HW-" + Math.abs(hash).toString(36).toUpperCase();
-    }
+    <p class="expired-message" id="expiredMessage">
+      ⚠️ Esta chave expirou. Gere uma nova.
+    </p>
 
-    function gerarBloco(t = 4) {
-      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let s = "";
-      for (let i = 0; i < t; i++) s += chars[Math.floor(Math.random() * chars.length)];
-      return s;
-    }
+    <div class="keyBox">
+      <div class="label">CHAVE ÚNICA</div>
+      <div class="key" id="keyText">—</div>
+      <div class="expiry" id="expiryText"></div>
+    </div>
 
-    function gerarChave() {
-      return `${PREFIXO}-${gerarBloco()}-${gerarBloco()}-${gerarBloco()}`;
-    }
+    <button id="btnCopiar">COPIAR CHAVE</button>
+    <button class="btn-outline" onclick="resetar()">GERAR OUTRA</button>
+  </div>
 
-    function mostrarEtapa(id) {
-      document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-    }
+  <div class="footer">GESISCRIPTS • SISTEMA OFICIAL</div>
+</div>
 
-    async function gerar() {
-      // Tenta API
-      try {
-        const r = await fetch(`${API_URL}?acao=gerar&hwid=${encodeURIComponent(getHWID())}`);
-        const data = await r.json();
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyBtqiMfKSEXW92Rdx6D0OPYVtIrPspuT51rQ00Xbq9kyJUSjVotxqQ3XxENrLasSkgWQ/exec";
+const PREFIXO = "GESI";
+const EXPIRA_MINUTOS = 10;
 
-        if (!data.ok) {
-          document.getElementById("keyText").textContent = "ERRO";
-          document.getElementById("expiryText").textContent = data.msg || "Erro ao gerar";
-          mostrarEtapa("stepKey");
-          return;
-        }
+var chaveAtual = null;
+var countdownInterval = null;
+var tempoExpira = 0;
 
+function mostrarEtapa(id) {
+  var todas = document.querySelectorAll(".step");
+  for (var i = 0; i < todas.length; i++) todas[i].classList.remove("active");
+  document.getElementById(id).classList.add("active");
+}
+
+function getHWID() {
+  var data = [navigator.userAgent, navigator.language, screen.width, screen.height].join("|");
+  var hash = 0;
+  for (var i = 0; i < data.length; i++) {
+    hash = ((hash << 5) - hash) + data.charCodeAt(i);
+    hash |= 0;
+  }
+  return "HW-" + Math.abs(hash).toString(36).toUpperCase();
+}
+
+function gerarBloco(t) {
+  var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  var s = "";
+  for (var i = 0; i < t; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
+}
+
+function gerarChaveLocal() {
+  return PREFIXO + "-" + gerarBloco(4) + "-" + gerarBloco(4) + "-" + gerarBloco(4);
+}
+
+function formatarTempo(ms) {
+  if (ms < 0) ms = 0;
+  var total = Math.ceil(ms / 1000);
+  var min = Math.floor(total / 60);
+  var seg = total % 60;
+  return String(min).padStart(2, "0") + ":" + String(seg).padStart(2, "0");
+}
+
+function atualizarCountdown() {
+  var restante = tempoExpira - Date.now();
+  var box = document.getElementById("countdownBox");
+  var timer = document.getElementById("countdownTimer");
+  var msg = document.getElementById("expiredMessage");
+  var badge = document.getElementById("statusBadge");
+  var btnCopiar = document.getElementById("btnCopiar");
+
+  if (restante <= 0) {
+    timer.textContent = "00:00";
+    box.classList.add("expired");
+    msg.classList.add("active");
+    badge.textContent = "CHAVE EXPIRADA";
+    btnCopiar.disabled = true;
+    btnCopiar.textContent = "EXPIRADA";
+    if (countdownInterval) clearInterval(countdownInterval);
+    return;
+  }
+  timer.textContent = formatarTempo(restante);
+  if (restante < 120000) box.classList.add("warning");
+  else box.classList.remove("warning");
+}
+
+function iniciarCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  atualizarCountdown();
+  countdownInterval = setInterval(atualizarCountdown, 1000);
+}
+
+function gerar() {
+  fetch(API_URL + "?acao=gerar&hwid=" + encodeURIComponent(getHWID()))
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data.ok) {
+        chaveAtual = gerarChaveLocal();
+        tempoExpira = Date.now() + (EXPIRA_MINUTOS * 60 * 1000);
+      } else {
         chaveAtual = data.chave;
         tempoExpira = data.expira;
-      } catch (e) {
-        // Fallback local
-        chaveAtual = gerarChave();
-        tempoExpira = Date.now() + (EXPIRA_MINUTOS * 60 * 1000);
       }
+      finalizar();
+    })
+    .catch(function(){
+      chaveAtual = gerarChaveLocal();
+      tempoExpira = Date.now() + (EXPIRA_MINUTOS * 60 * 1000);
+      finalizar();
+    });
+}
 
-      const expiraEm = new Date(tempoExpira);
-      document.getElementById("keyText").textContent = chaveAtual;
-      document.getElementById("expiryText").textContent =
-        `Expira em ${expiraEm.toLocaleTimeString('pt-BR')} • HWID: ${getHWID()}`;
+function finalizar() {
+  var expiraEm = new Date(tempoExpira);
+  document.getElementById("keyText").textContent = chaveAtual;
+  document.getElementById("expiryText").textContent =
+    "Expira em " + expiraEm.toLocaleTimeString('pt-BR') + " • HWID: " + getHWID();
 
-      mostrarEtapa("stepKey");
-      iniciarCountdown();
+  mostrarEtapa("stepKey");
+  iniciarCountdown();
 
-      try {
-        localStorage.setItem("gesi_key", JSON.stringify({
-          key: chaveAtual, hwid: getHWID(), expira: tempoExpira,
-        }));
-      } catch (e) {}
-    }
+  try {
+    localStorage.setItem("gesi_key", JSON.stringify({
+      key: chaveAtual,
+      hwid: getHWID(),
+      expira: tempoExpira
+    }));
+  } catch (e) {}
+}
 
-    function formatarTempo(ms) {
-      if (ms < 0) ms = 0;
-      const total = Math.ceil(ms / 1000);
-      const min = Math.floor(total / 60);
-      const seg = total % 60;
-      return `${String(min).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
-    }
+function resetar() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  try { localStorage.removeItem("gesi_key"); } catch (e) {}
+  window.location.href = "/";
+}
 
-    function atualizarCountdown() {
-      const restante = tempoExpira - Date.now();
-      const box = document.getElementById("countdownBox");
-      const timer = document.getElementById("countdownTimer");
-      const msg = document.getElementById("expiredMessage");
-      const badge = document.getElementById("statusBadge");
-      const btnCopiar = document.getElementById("btnCopiar");
-
-      if (restante <= 0) {
-        timer.textContent = "00:00";
-        box.classList.add("expired");
-        msg.classList.add("active");
-        badge.textContent = "CHAVE EXPIRADA";
-        btnCopiar.disabled = true;
-        btnCopiar.textContent = "EXPIRADA";
-        if (countdownInterval) clearInterval(countdownInterval);
-        return;
-      }
-      timer.textContent = formatarTempo(restante);
-      if (restante < 2 * 60 * 1000) box.classList.add("warning");
-      else box.classList.remove("warning");
-    }
-
-    function iniciarCountdown() {
-      if (countdownInterval) clearInterval(countdownInterval);
-      atualizarCountdown();
-      countdownInterval = setInterval(atualizarCountdown, 1000);
-    }
-
-    document.getElementById("btnCopiar").addEventListener("click", async function() {
-      if (!chaveAtual) return;
-      const btn = this;
-      try {
-        await navigator.clipboard.writeText(chaveAtual);
-        btn.textContent = "COPIADO";
-      } catch (e) {
-        const range = document.createRange();
-        range.selectNode(document.getElementById("keyText"));
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
-        document.execCommand("copy");
-        btn.textContent = "COPIADO";
-      }
-      setTimeout(() => {
+document.getElementById("btnCopiar").addEventListener("click", function() {
+  if (!chaveAtual) return;
+  var btn = this;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(chaveAtual).then(function(){
+      btn.textContent = "COPIADO";
+      setTimeout(function(){
         if (tempoExpira > Date.now()) btn.textContent = "COPIAR CHAVE";
       }, 2000);
     });
+  } else {
+    var range = document.createRange();
+    range.selectNode(document.getElementById("keyText"));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    btn.textContent = "COPIADO";
+    setTimeout(function(){
+      if (tempoExpira > Date.now()) btn.textContent = "COPIAR CHAVE";
+    }, 2000);
+  }
+});
 
-    function resetar() {
-      if (countdownInterval) clearInterval(countdownInterval);
-      chaveAtual = null;
-      try { localStorage.removeItem("gesi_key"); } catch (e) {}
-      location.reload();
-    }
-
-    // ⏳ Pequeno delay pra dar sensação de "gerando"
-    setTimeout(gerar, 1500);
-  </script>
+setTimeout(gerar, 1500);
+</script>
 </body>
 </html>
